@@ -9,9 +9,10 @@ from model.model import eAlsPredictor
 
 app = FastAPI()
 
-MODEL_PATH = Path("D:\Programming\MovieRecommenderApi\MovieRecommenderML\src\model.joblib")
-MOVIES_PATH = Path("D:\Programming\MovieRecommenderApi\MovieRecommenderML\src\movies.csv")
-TRAIN_DATA_PATH = Path("D:\Programming\MovieRecommenderApi\MovieRecommenderML\src\\ratings.npz")
+MODEL_PATH = Path("/app/data/model.joblib")
+MOVIES_PATH = Path("/app/data/movies.csv")
+TRAIN_DATA_PATH = Path("/app/data/ratings.npz")
+
 
 model = load_model(MODEL_PATH)
 movies = pd.read_csv(MOVIES_PATH, sep='\t', encoding='latin-1', usecols=['movie_id', 'title', 'genres'])
