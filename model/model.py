@@ -88,6 +88,10 @@ class eAlsPredictor:
 
 
     def add_user(self, user_id: int, rated_items: dict[int, int]) -> None:
+        # if user_id <= self._train_sparse.shape[0] - 1:
+        #     raise ValueError(f"User ID {user_id} already exists.")
+        # if user_id > self._train_sparse.shape[0]:
+        #     raise ValueError(f"User ID {user_id} is not sequential")
         new_user_ratings = np.zeros(self._train_sparse.shape[1], dtype=np.float32)
 
         # Update ratings for the rated items

@@ -20,9 +20,9 @@ MOVIES_PATH = Path("/app/data/movies.csv")
 TRAIN_DATA_PATH = Path("/app/data/ratings.npz")
 
 # Paths to run locally
-# MODEL_PATH = Path("model.joblib")
-# MOVIES_PATH = Path("movies.csv")
-# TRAIN_DATA_PATH = Path("ratings.npz")
+# MODEL_PATH = Path("D:\\Programming\\MovieRecommenderApi\\MovieRecommenderML\\app\\data\\model.joblib")
+# MOVIES_PATH = Path("D:\\Programming\\MovieRecommenderApi\\MovieRecommenderML\\app\\data\\movies.csv")
+# TRAIN_DATA_PATH = Path("D:\\Programming\\MovieRecommenderApi\\MovieRecommenderML\\app\\data\\ratings.npz")
 
 ratings = pd.read_csv('ratings.csv', sep='\t', encoding='latin-1', usecols=['user_id', 'movie_id', 'rating', 'timestamp'])
 unique_movie_ids = ratings['movie_id'].unique()
@@ -67,7 +67,7 @@ async def create_user(user_id: int, request: CreateUserRequestDto):
 async def update_user(user_id: int, request: UpdateUserRequestDto):
     try:
         for rate in request.rates:
-            recommender.add_rating_for_user(user_id=user_id-1, item_id=rate.movie_id, rating=rate.rate)
+            recommender.add_rating_for_user(user_id=user_id-1, item_id=movie_id_mapping[rate.movie_id], rating=rate.rate)
         return {"message": f"User {user_id}'s ratings updated successfully."}
     except Exception as e:
         raise HTTPException(status_code=400, detail=str(e))
